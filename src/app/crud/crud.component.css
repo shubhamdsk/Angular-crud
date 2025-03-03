@@ -1,0 +1,167 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 94vh;
+  overflow: hidden;
+}
+
+.table-container {
+  width: 66%;
+  max-height: 92vh;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 5px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.form-container {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  max-width: 600px;
+  height: 86vh;
+  position: sticky;
+  align-self: flex-start;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+.error-message,
+span.error {
+  color: red;
+  font-size: 14px;
+  height: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  max-width: 300px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 16px;
+  height: 30px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .table-container {
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  .form-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+}
+
+@media (max-width: 768px) {
+
+  th,
+  td {
+    padding: 3px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  input,
+  select {
+    padding: 6px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    height: 26px;
+  }
+}
