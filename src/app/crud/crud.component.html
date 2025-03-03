@@ -1,0 +1,163 @@
+<div class="container">
+  <!-- Left Section: Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Gender</th>
+          <th>Hobbies</th>
+          <th>Designation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.contact }}</td>
+          <td>{{ emp.address }}</td>
+          <td>{{ emp.gender }}</td>
+          <td>{{ emp.hobbies.join(", ") || "None" }}</td>
+          <td>{{ emp.designation }}</td>
+          <td>
+            <button (click)="onEdit(i)">Edit</button>
+            <button (click)="onDelete(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Right Section: Form -->
+  <div class="form-container">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <label for="name">Name</label>
+      <input type="text" formControlName="name" />
+      <span
+        class="error"
+        *ngIf="
+          employeeForm.get('name')?.touched && employeeForm.get('name')?.invalid
+        "
+      >
+        {{ getErrorMessage("name") }}
+      </span>
+
+      <label for="email">Email</label>
+      <input type="email" formControlName="email" />
+      <span
+        class="error"
+        *ngIf="
+          employeeForm.get('email')?.touched &&
+          employeeForm.get('email')?.invalid
+        "
+      >
+        {{ getErrorMessage("email") }}
+      </span>
+
+      <label for="contact">Contact</label>
+      <input
+        type="text"
+        formControlName="contact"
+        minlength="10"
+        maxlength="10"
+      />
+      <span
+        class="error"
+        *ngIf="
+          employeeForm.get('contact')?.touched &&
+          employeeForm.get('contact')?.invalid
+        "
+      >
+        {{ getErrorMessage("contact") }}
+      </span>
+
+      <label for="address">Address</label>
+      <input type="text" formControlName="address" />
+      <span
+        class="error"
+        *ngIf="
+          employeeForm.get('address')?.touched &&
+          employeeForm.get('address')?.invalid
+        "
+      >
+        {{ getErrorMessage("address") }}
+      </span>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" formControlName="gender" value="Male" />
+            Male</label
+          >
+          <label
+            ><input type="radio" formControlName="gender" value="Female" />
+            Female</label
+          >
+        </div>
+        <span
+          class="error"
+          *ngIf="
+            employeeForm.get('gender')?.touched &&
+            employeeForm.get('gender')?.invalid
+          "
+        >
+          {{ getErrorMessage("gender") }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="hobbies">Hobbies</label>
+        <div class="checkbox-group">
+          <label
+            ><input
+              type="checkbox"
+              (change)="onHobbyChange($event, 'Reading')"
+            />
+            Reading</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              (change)="onHobbyChange($event, 'Traveling')"
+            />
+            Traveling</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              (change)="onHobbyChange($event, 'Gaming')"
+            />
+            Gaming</label
+          >
+        </div>
+      </div>
+
+      <label for="designation">Designation</label>
+      <select formControlName="designation">
+        <option *ngFor="let des of designations" [value]="des">
+          {{ des }}
+        </option>
+      </select>
+      <span
+        class="error"
+        *ngIf="
+          employeeForm.get('designation')?.touched &&
+          employeeForm.get('designation')?.invalid
+        "
+      >
+        {{ getErrorMessage("designation") }}
+      </span>
+
+      <button type="submit" [disabled]="employeeForm.invalid">
+        {{ editIndex !== null ? "Update" : "Add" }}
+      </button>
+    </form>
+  </div>
+</div>
